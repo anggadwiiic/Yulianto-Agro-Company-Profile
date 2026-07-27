@@ -329,10 +329,11 @@
         class="absolute inset-0 w-full h-full object-cover opacity-20 z-0 pointer-events-none"
       />
 
-      <div class="relative z-10 w-full px-4 md:px-8 lg:px-[70px]">
+      <div class="relative z-10 w-full px-4 md:px-8 lg:px-12 xl:px-[70px]">
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 mb-10"
         >
+          <!-- Kolom 1 -->
           <div class="lg:col-span-4 flex flex-col">
             <img
               src="./assets/logo-yulianto-agro-putih.webp"
@@ -358,6 +359,7 @@
                 <i class="fa-brands fa-whatsapp text-lg"></i>
                 082234567026 (Pak Yulianto)
               </a>
+
               <a
                 href="https://api.whatsapp.com/send/?phone=6282234567026"
                 target="_blank"
@@ -365,8 +367,9 @@
                 class="inline-flex items-center gap-2.5 bg-[#458C49] hover:bg-[#346b38] text-white w-full sm:w-max min-h-[44px] rounded-[24px] px-4 text-[14px] font-normal transition-colors shadow-sm"
               >
                 <i class="fa-brands fa-whatsapp text-xl"></i>
-                082234567026 (Ny. Yulianto)
+                082234567026 (Ibu Agustin)
               </a>
+
               <a
                 href="mailto:yuliantoyuli7788@gmail.com"
                 class="inline-flex items-center gap-2.5 bg-[#458C49] hover:bg-[#346b38] text-white w-full sm:w-max min-h-[44px] rounded-[24px] px-4 text-[14px] font-normal transition-colors shadow-sm"
@@ -377,39 +380,45 @@
             </div>
           </div>
 
+          <!-- Kolom 2 -->
           <div class="lg:col-span-3 flex flex-col lg:pl-4">
             <h3 class="text-white text-[16px] font-semibold mb-4 tracking-wide">
               Menu Utama
             </h3>
             <div class="flex flex-col gap-5">
               <a
-                href="index.html#home"
+                href="#home"
                 class="text-white/90 text-[14px] font-normal hover:text-accent-cream transition-colors"
                 >Home</a
               >
+
               <a
-                href="index.html#tentang-kami"
+                href="#tentang-kami"
                 class="text-white/90 text-[14px] font-normal hover:text-accent-cream transition-colors"
                 >Tentang Kami</a
               >
+
               <a
-                href="produk.html"
+                href="#produk"
                 class="text-white/90 text-[14px] font-normal hover:text-accent-cream transition-colors"
                 >Produk & Jasa</a
               >
+
               <a
-                href="index.html#galeri"
+                href="#galeri"
                 class="text-white/90 text-[14px] font-normal hover:text-accent-cream transition-colors"
                 >Galeri & Fasilitas</a
               >
+
               <a
-                href="artikel.html"
+                href="#artikel"
                 class="text-white/90 text-[14px] font-normal hover:text-accent-cream transition-colors"
                 >Blog & Artikel</a
               >
             </div>
           </div>
 
+          <!-- Kolom 3 -->
           <div class="lg:col-span-5 flex flex-col">
             <h3 class="text-white text-[16px] font-semibold mb-4 tracking-wide">
               Lokasi Kami
@@ -433,6 +442,7 @@
 
         <hr class="border-white/20 mb-4" />
 
+        <!-- Copyright & Sosial Media -->
         <div
           class="flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left"
         >
@@ -446,6 +456,7 @@
               class="min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white transition-colors"
               ><i class="fa-regular fa-envelope text-base"></i
             ></a>
+
             <a
               href="https://api.whatsapp.com/send/?phone=6282234567026"
               target="_blank"
@@ -454,20 +465,23 @@
               class="min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white transition-colors"
               ><i class="fa-brands fa-whatsapp text-base"></i
             ></a>
+
             <a
-              href="#"
+              href="https://www.tiktok.com/@yuliantopratamaagro"
               aria-label="Ikuti kami di TikTok"
               class="min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white transition-colors"
               ><i class="fa-brands fa-tiktok text-base"></i
             ></a>
+
             <a
-              href="#"
+              href="https://www.facebook.com/slatemDhemDhem/"
               aria-label="Ikuti unuk Facebook"
               class="min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white transition-colors"
               ><i class="fa-brands fa-facebook-f text-base"></i
             ></a>
+
             <a
-              href="#"
+              href="https://www.instagram.com/yu.lianto696/"
               aria-label="Ikuti kami di Instagram"
               class="min-w-[36px] min-h-[36px] flex items-center justify-center hover:text-white transition-colors"
               ><i class="fa-brands fa-instagram text-base"></i
@@ -480,30 +494,69 @@
     <!-- SIDEBAR -->
     <aside
       id="contact-sidebar"
-      aria-label="Kontak kami"
+      aria-label="Sidebar"
       class="fixed right-0 top-0 z-[60] flex h-screen w-full max-w-[320px] translate-x-full flex-col border-t-[8px] border-primary bg-base shadow-2xl transition-transform duration-[350ms] ease-in-out"
     >
+      <!-- CLOSE BUTTON -->
       <div class="flex justify-end p-4">
         <button
           id="close-sidebar-btn"
-          aria-label="Tutup sidebar"
+          aria-label="Close"
           class="flex min-h-[44px] min-w-[44px] items-center justify-center text-dark transition-colors hover:text-primary"
         >
           <i class="fa-solid fa-xmark text-2xl" aria-hidden="true"></i>
         </button>
       </div>
-      <div class="flex-1 px-8 pt-2">
+
+      <!-- CONTENT -->
+      <div class="flex-1 overflow-y-auto px-8 pt-2 pb-6">
         <h2 class="mb-8 text-[32px] font-bold text-primary">Yulianto Agro</h2>
+
+        <!-- MOBILE MENU -->
+        <nav aria-label="Main Menu" class="mb-8 flex flex-col gap-5 md:hidden">
+          <a
+            href="index.html"
+            class="text-[16px] font-medium text-dark transition-colors hover:text-primary"
+            >Home</a
+          >
+          <a
+            href="index.html#tentang-kami"
+            class="text-[16px] font-medium text-dark transition-colors hover:text-primary"
+            >Tentang Kami</a
+          >
+          <a
+            href="#index.html#produk"
+            class="text-[16px] font-medium text-dark transition-colors hover:text-primary"
+            >Produk & Jasa</a
+          >
+          <a
+            href="index.html#galeri"
+            class="text-[16px] font-medium text-dark transition-colors hover:text-primary"
+            >Galeri & Fasilitas</a
+          >
+          <a
+            href="index.html#artikel"
+            class="text-[16px] font-medium text-dark transition-colors hover:text-primary"
+            >Artikel</a
+          >
+        </nav>
+
+        <!-- DIVIDER -->
+        <hr class="mb-8 border-t-[1.5px] border-gray-300 md:hidden" />
+
+        <!-- CONTACT -->
         <h3 class="mb-4 text-[18px] font-bold text-primary">Kontak kami</h3>
         <div class="space-y-4 text-[16px] font-normal leading-[26px] text-dark">
           <p>Konsultasi : 0822-3456-7026</p>
           <p>Email : yuliantoyuli7788@gmail.com</p>
         </div>
       </div>
+
+      <!-- SOCIALS -->
       <div class="flex items-center gap-0 px-5 pb-10">
         <a
           href="mailto:yuliantoyuli7788@gmail.com"
-          aria-label="Kirim Email"
+          aria-label="Email"
           class="flex min-h-[44px] min-w-[44px] items-center justify-center text-primary transition-colors hover:text-primary-dark"
           ><i class="fa-regular fa-envelope text-xl" aria-hidden="true"></i
         ></a>
@@ -511,31 +564,31 @@
           href="https://api.whatsapp.com/send/?phone=6282234567026"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Kirim pesan WhatsApp"
+          aria-label="WhatsApp"
           class="flex min-h-[44px] min-w-[44px] items-center justify-center text-primary transition-colors hover:text-primary-dark"
           ><i class="fa-brands fa-whatsapp text-xl" aria-hidden="true"></i
         ></a>
         <a
-          href="#"
+          href="https://www.tiktok.com/@yuliantopratamaagro"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Ikuti kami di TikTok"
+          aria-label="TikTok"
           class="flex min-h-[44px] min-w-[44px] items-center justify-center text-primary transition-colors hover:text-primary-dark"
           ><i class="fa-brands fa-tiktok text-xl" aria-hidden="true"></i
         ></a>
         <a
-          href="#"
+          href="https://www.facebook.com/slatemDhemDhem/"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Ikuti kami di Facebook"
+          aria-label="Facebook"
           class="flex min-h-[44px] min-w-[44px] items-center justify-center text-primary transition-colors hover:text-primary-dark"
           ><i class="fa-brands fa-facebook-f text-xl" aria-hidden="true"></i
         ></a>
         <a
-          href="#"
+          href="https://www.instagram.com/yu.lianto696/"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Ikuti kami di Instagram"
+          aria-label="Instagram"
           class="flex min-h-[44px] min-w-[44px] items-center justify-center text-primary transition-colors hover:text-primary-dark"
           ><i class="fa-brands fa-instagram text-xl" aria-hidden="true"></i
         ></a>

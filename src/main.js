@@ -69,6 +69,96 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // PAGINATION
+  const articleContainer = document.getElementById("article-container");
+  const paginationContainer = document.getElementById("pagination-container");
+  const headerArtikel = document.getElementById("artikel-header");
+
+  if (articleContainer && paginationContainer) {
+    const articles = Array.from(articleContainer.children);
+    const itemsPerPage = 9;
+    const totalPages = Math.ceil(articles.length / itemsPerPage);
+    let currentPage = 1;
+
+    if (totalPages <= 1) {
+      paginationContainer.classList.add("hidden");
+      paginationContainer.classList.remove("flex");
+    } else {
+      const renderArticles = (page) => {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        articles.forEach((article, index) => {
+          if (index >= start && index < end) {
+            article.classList.remove("hidden");
+            setTimeout(() => {
+              article.classList.remove("opacity-0", "scale-95");
+              article.classList.add(
+                "opacity-100",
+                "scale-100",
+                "transition-all",
+                "duration-500",
+              );
+            }, 50);
+          } else {
+            article.classList.add("hidden", "opacity-0", "scale-95");
+            article.classList.remove("opacity-100", "scale-100");
+          }
+        });
+      };
+
+      const renderPagination = (page) => {
+        paginationContainer.innerHTML = "";
+
+        // PREV
+        if (page > 1) {
+          const prevBtn = document.createElement("button");
+          prevBtn.innerHTML =
+            '<i class="fa-solid fa-chevron-left mr-2"></i> Sebelumnya';
+          prevBtn.className =
+            "flex items-center justify-center px-5 min-h-[44px] rounded-[30px] bg-white text-dark font-medium text-[16px] border border-gray-200 hover:bg-primary hover:text-white shadow-sm transition-colors cursor-pointer";
+          prevBtn.addEventListener("click", () => goToPage(page - 1));
+          paginationContainer.appendChild(prevBtn);
+        }
+
+        // INFO
+        const infoText = document.createElement("span");
+        infoText.textContent = `${page}  dari  ${totalPages}`;
+        infoText.className =
+          "flex items-center justify-center px-4 min-h-[44px] text-dark font-medium text-[16px] select-none";
+        paginationContainer.appendChild(infoText);
+
+        // NEXT
+        if (page < totalPages) {
+          const nextBtn = document.createElement("button");
+          nextBtn.innerHTML =
+            'Next <i class="fa-solid fa-chevron-right ml-2"></i>';
+          nextBtn.className =
+            "flex items-center justify-center px-5 min-h-[44px] rounded-[30px] bg-white text-dark font-medium text-[16px] border border-gray-200 hover:bg-primary hover:text-white shadow-sm transition-colors cursor-pointer";
+          nextBtn.addEventListener("click", () => goToPage(page + 1));
+          paginationContainer.appendChild(nextBtn);
+        }
+      };
+
+      const goToPage = (page) => {
+        currentPage = page;
+        renderArticles(page);
+        renderPagination(page);
+
+        if (headerArtikel) {
+          const yOffset = -100;
+          const y =
+            headerArtikel.getBoundingClientRect().top +
+            window.pageYOffset +
+            yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      };
+
+      goToPage(1);
+    }
+  }
+
   // LIGHTBOX
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
@@ -177,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // SIDEBAR & PUSH EFFECT
+  // SIDEBAR
   const sidebar = document.getElementById("contact-sidebar");
   const sidebarToggleBtn = document.getElementById("sidebar-toggle-btn");
   const closeSidebarBtn = document.getElementById("close-sidebar-btn");
