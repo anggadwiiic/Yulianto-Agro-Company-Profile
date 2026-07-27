@@ -1,4 +1,6 @@
 import "./style.css";
+import logoTeksUrl from "../assets/logo-yulianto-agro-teks.webp";
+import logoPutihUrl from "../assets/logo-yulianto-agro-putih.webp";
 
 window.addEventListener("load", () => {
   document.body.classList.remove("stop-transitions");
@@ -14,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.scrollY > 10) {
       navbar.classList.remove("bg-transparent");
       navbar.classList.add("bg-primary", "shadow-sm");
-      brandLogo.src = "./assets/logo-yulianto-agro-putih.webp";
+      brandLogo.src = logoPutihUrl;
     }
 
     const navObserver = new IntersectionObserver(
@@ -23,11 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!entry.isIntersecting) {
             navbar.classList.remove("bg-transparent");
             navbar.classList.add("bg-primary", "shadow-sm");
-            brandLogo.src = "./assets/logo-yulianto-agro-putih.webp";
+            brandLogo.src = logoPutihUrl;
           } else {
             navbar.classList.add("bg-transparent");
             navbar.classList.remove("bg-primary", "shadow-sm");
-            brandLogo.src = "./assets/logo-yulianto-agro-teks.webp";
+            brandLogo.src = logoTeksUrl;
           }
         });
       },

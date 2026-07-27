@@ -1,17 +1,21 @@
+// vite.config.js
 import { defineConfig } from "vite";
 import { resolve } from "path";
+import fg from "fast-glob";
+
+const htmlFiles = fg.sync("*.html", { cwd: __dirname });
+
+const input = Object.fromEntries(
+  htmlFiles.map((file) => {
+    const name = file.replace(".html", "").replace(/[-.]/g, "_");
+    return [name, resolve(__dirname, file)];
+  }),
+);
 
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, "index.html"),
-        produk: resolve(__dirname, "produk.html"),
-        pengunjung: resolve(__dirname, "pengunjung.html"),
-        artikel: resolve(__dirname, "artikel.html"),
-        // Tambahkan halaman HTML baru di bawah ini
-        // booster: resolve(__dirname, "booster-kelengkeng.html"),
-      },
+      input,
     },
   },
 });
