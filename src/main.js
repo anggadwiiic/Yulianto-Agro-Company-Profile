@@ -348,3 +348,96 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // facade
+  const tiktokCards = document.querySelectorAll(".tiktok-card");
+
+  if (tiktokCards.length > 0) {
+    const getCachedOembed = (url) => {
+      try {
+        const cached = sessionStorage.getItem(`tiktok-oembed:${url}`);
+        return cached ? JSON.parse(cached) : null;
+      } catch {
+        return null;
+      }
+    };
+
+    const setCachedOembed = (url, data) => {
+      try {
+        sessionStorage.setItem(`tiktok-oembed:${url}`, JSON.stringify(data));
+      } catch {}
+    };
+
+    const loadThumbnail = async (card) => {
+      const url = card.dataset.tiktokUrl;
+      const thumbEl = card.querySelector(".tiktok-thumb");
+      const skeletonEl = card.querySelector(".tiktok-skeleton");
+
+      let data = getCachedOembed(url);
+
+      if (!data) {
+        try {
+          const res = await fetch(
+            `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`,
+          );
+          if (!res.ok) throw new Error("oEmbed gagal");
+          data = await res.json();
+          setCachedOembed(url, data);
+        } catch (err) {
+          console.error("Gagal memuat thumbnail:", err);
+          return;
+        }
+      }
+
+      thumbEl.src = data.thumbnail_url;
+      thumbEl.alt = data.title || "Thumbnail TikTok";
+
+      thumbEl.addEventListener("load", () => {
+        thumbEl.classList.remove("opacity-0");
+        if (skeletonEl) skeletonEl.remove();
+      });
+    };
+
+    const oembedObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadThumbnail(entry.target);
+            oembedObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "200px 0px" },
+    );
+
+    tiktokCards.forEach((card) => oembedObserver.observe(card));
+
+    document.querySelectorAll(".tiktok-facade").forEach((button) => {
+      button.addEventListener(
+        "click",
+        function () {
+          const card = this.closest(".tiktok-card");
+          const url = card.dataset.tiktokUrl;
+          const videoId = url.match(/video\/(\d+)/)?.[1];
+          const frame = this.closest(".tiktok-frame");
+
+          if (!videoId || !frame) return;
+
+          const iframe = document.createElement("iframe");
+          iframe.src = `https://www.tiktok.com/embed/v2/${videoId}`;
+
+          iframe.className = "absolute inset-0 w-full h-full object-cover";
+          iframe.setAttribute("frameborder", "0");
+          iframe.setAttribute("allowfullscreen", "true");
+          iframe.setAttribute("scrolling", "no");
+          iframe.setAttribute("allow", "autoplay; encrypted-media; fullscreen");
+
+          frame.innerHTML = "";
+          frame.appendChild(iframe);
+        },
+        { once: true },
+      );
+    });
+  }
+});
