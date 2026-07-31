@@ -439,5 +439,34 @@ document.addEventListener("DOMContentLoaded", () => {
         { once: true },
       );
     });
+
+    // facebook facade
+    document.querySelectorAll(".facebook-facade").forEach((button) => {
+      button.addEventListener(
+        "click",
+        function () {
+          const frame = this.closest(".facebook-frame");
+          if (!frame) return;
+
+          const iframe = document.createElement("iframe");
+
+          iframe.src =
+            "https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F896119550144062%2F&show_text=false&width=267&t=0";
+
+          iframe.className = "absolute inset-0 w-full h-full object-cover";
+          iframe.setAttribute("frameborder", "0");
+          iframe.setAttribute("allowfullscreen", "true");
+          iframe.setAttribute("scrolling", "no");
+          iframe.setAttribute(
+            "allow",
+            "autoplay; encrypted-media; picture-in-picture",
+          );
+
+          frame.innerHTML = "";
+          frame.appendChild(iframe);
+        },
+        { once: true },
+      );
+    });
   }
 });
